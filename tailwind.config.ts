@@ -9,6 +9,22 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        leftToRight: {
+          '0%': {
+            width: '0',
+          },
+          '50%': {
+            width: '50%',
+          },
+          '100%': {
+            width: '100%',
+          },
+        },
+      },
+      animation: {
+        leftToRight: 'leftToRight 0.5s linear',
+      },
       colors: {
         third: '#F5DB13',
         primary: '#F2B807',
