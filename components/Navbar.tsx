@@ -41,7 +41,7 @@ const Navbar = () => {
         >
           <Image
             src={'/img/logo_pokemon.svg'}
-            className='mr-3 w-24 md:w-20 sm:h-9 z-50 justify-items-end'
+            className='mr-3 w-24 md:w-24 sm:h-9 z-50 justify-items-end'
             width={100}
             height={100}
             alt='Flowbite React Logo'
@@ -85,13 +85,20 @@ const Navbar = () => {
               <li
                 key={index}
                 className='block py-2 px-3 text-black md:bg-transparent md:p-0 group'
+                onClick={() => handleClick(items.id)}
               >
-                <button onClick={() => handleClick(items.id)}>{items.label}</button>
+                <button className='lg:text-lg'>{items.label}</button>
                 <div className='group-hover:bg-black h-[1px] bg-transparent group-hover:animate-leftToRight transition-all'></div>
               </li>
             ))}
-            <li className='block py-2 px-3 text-black rounded md:bg-transparent md:p-0 dark:text-white md:dark:text-blue-500 group'>
-              <a href=''>Documentation</a>
+            <li className='block py-2 px-3 text-black font-medium rounded md:bg-transparent md:p-0 dark:text-white md:dark:text-blue-500 group'>
+              <a
+                className='lg:text-lg'
+                href='https://pokeapi.co/docs/v2'
+                target='_blank'
+              >
+                Documentation
+              </a>
               <div className='group-hover:bg-black h-[1px] bg-transparent group-hover:animate-leftToRight transition-all'></div>
             </li>
           </ul>

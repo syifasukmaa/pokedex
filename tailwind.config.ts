@@ -32,6 +32,9 @@ const config: Config = {
         danger: '#D93E30',
         green: '#73D677',
         grass: '#70A83B',
+        blue01: '#06afc6',
+        blue02: '#07d6f2',
+        grey: '#4B4B4B',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
