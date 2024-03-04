@@ -1,13 +1,13 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useApi from '@/store/useApi';
 import { CardPreview } from './components/CardPreview';
 import { useShallow } from 'zustand/react/shallow';
-import { useRouter } from 'next/navigation';
 import { Skeleton } from './components/Skeleton';
+import { ModalDetailPokemon } from './components/ModalDetailPokemon';
 
 const Page = () => {
-  const router = useRouter();
+  const [openModal, setOpenModal] = useState(false);
 
   const {
     allPokemons,
@@ -19,7 +19,7 @@ const Page = () => {
     loading,
     offset,
     getDetailPokemons,
-    setDetailPokemon,
+    setDetailPokemons,
   } = useApi(
     useShallow((state) => ({
       getAllPokemons: state.getAllPokemons,
@@ -31,7 +31,7 @@ const Page = () => {
       totalPokemon: state.totalPokemon,
       loading: state.loading,
       offset: state.offset,
-      setDetailPokemon: state.detailPokemon,
+      setDetailPokemons: state.setDetailPokemons,
     })),
   );
   const pages = offset / 9;
@@ -41,8 +41,8 @@ const Page = () => {
     async function fetchData() {
       try {
         const result = await getDetailPokemons(id);
-        console.log(result);
-        setDetailPokemon(result);
+        setDetailPokemons(result);
+        setOpenModal(true);
       } catch (Error) {
         console.error(Error);
       }
@@ -52,6 +52,7 @@ const Page = () => {
   useEffect(() => {
     getAllPokemons(0);
   }, [getAllPokemons, getDetailPokemons]);
+
   return (
     <div className='min-h-screen pt-[70px] px-6 md:px-16 lg:px-20'>
       <h1 className='text-3xl text-black font-light pt-10 text-center md:px-16'>
@@ -95,6 +96,8 @@ const Page = () => {
           </div>
         </div>
       </div>
+
+      {openModal ? <ModalDetailPokemon setOpenModal={setOpenModal} /> : null}
     </div>
   );
 };

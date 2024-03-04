@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { getColorFromUrl } from '@/store/colors';
 import React, { useEffect, useState } from 'react';
 import { CardCounterCount } from './CardCounterCount';
+import { CardTags } from './CardTags';
 
 interface PokemonData {
   name: string;
@@ -32,7 +33,7 @@ export const CardPreview: React.FC<{ datas: PokemonData }> = ({ datas }) => {
   }, []);
   return (
     <>
-      <div className='px-2 py-4'>
+      <div className='px-2 py-4 2xl:py-8 2xl:px-4'>
         <h3 className='font-semibold text-lg capitalize'>{datas.name}</h3>
 
         <div className='flex mt-3 gap-3'>
@@ -46,16 +47,11 @@ export const CardPreview: React.FC<{ datas: PokemonData }> = ({ datas }) => {
           />
         </div>
         <div className='flex gap-3 items-center mt-2'>
-          <div className='bg-green rounded-full py-[2px] px-3 shadow-[1px_3px_0px_0px_green]'>
-            <p className='text-sm font-medium'>Grass</p>
-          </div>
-          <div className='bg-blue02 rounded-full py-[1px] px-3 shadow-[1px_3px_0px_0px_#06afc6]'>
-            <p className='text-sm font-medium'>Poison</p>
-          </div>
+          <CardTags />
         </div>
       </div>
       <div
-        className={`overflow-hidden w-3/5 rounded-e-lg flex items-center justify-center h-40`}
+        className={`overflow-hidden w-3/5 rounded-e-lg flex items-center justify-center h-40 2xl:h-48`}
         style={{ backgroundColor: pokemonColor || 'white' }}
       >
         <Image
@@ -64,7 +60,7 @@ export const CardPreview: React.FC<{ datas: PokemonData }> = ({ datas }) => {
           height={500}
           alt='image pokemon'
           priority={false}
-          className='max-w-[65%]'
+          className='max-w-[60%]'
         />
       </div>
     </>
